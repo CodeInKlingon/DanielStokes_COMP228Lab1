@@ -1,3 +1,7 @@
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+
 public class Patient {
     static int patientIDCount = 1;
     private int patientId;
@@ -27,6 +31,10 @@ public class Patient {
         this.city = city;
         this.province = province;
         this.postalCode = postalCode;
+    }
+
+    public String toString() {
+        return "Name: '" + this.firstName + " " + this.lastName + "| Patient Number: " + patientId + "| Address: " + address + ", " + city + ", " + province + ", " + postalCode;
     }
 
     public String getFirstName() {
@@ -80,4 +88,41 @@ public class Patient {
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
+
+
+
 }
+
+class Driver{
+
+    public static void main( String[] args){
+
+        String fname = PromptInput("Whats your first name fam");
+        String lname = PromptInput("Whats your last name fam");
+        String address = PromptInput("Please enter your street address:");
+        String city = PromptInput("Please enter the city:");
+        String province = PromptInput("Please enter the province:");
+        String postal = PromptInput("Please enter the postal code:");
+
+        Patient newPatient = new Patient(fname, lname, address, city, province, postal);
+
+        JOptionPane.showMessageDialog (null,"New patient Created:    " + newPatient);
+
+
+    }
+
+    //method to prompt for input and repeat if input was empty
+    static String PromptInput(String message){
+        String s;
+        do{
+            System.out.println("check input.");
+            s = JOptionPane.showInputDialog (null,message);
+            System.out.println("Input was " + s);
+        }while (s.isEmpty());
+
+        return s;
+
+    }
+
+}
+
