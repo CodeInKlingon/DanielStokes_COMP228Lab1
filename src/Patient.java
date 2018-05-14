@@ -3,7 +3,10 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Patient {
+    //static variable to keep track of patient number so each patient has a unique number
     static int patientIDCount = 1;
+
+    //patient class's properties
     private int patientId;
     private String firstName;
     private String lastName;
@@ -12,6 +15,8 @@ public class Patient {
     private String province;
     private String postalCode;
 
+
+    //default constructor
     public Patient(){
         patientId = patientIDCount++;
         firstName = "John";
@@ -33,9 +38,12 @@ public class Patient {
         this.postalCode = postalCode;
     }
 
+    //string overide method for outputting this object ot a string type
     public String toString() {
         return "Name: '" + this.firstName + " " + this.lastName + "| Patient Number: " + patientId + "| Address: " + address + ", " + city + ", " + province + ", " + postalCode;
     }
+
+    //getter and setters
 
     public String getFirstName() {
         return firstName;
@@ -97,6 +105,7 @@ class Driver{
 
     public static void main( String[] args){
 
+        //prompt for input
         String fname = PromptInput("Whats your first name fam");
         String lname = PromptInput("Whats your last name fam");
         String address = PromptInput("Please enter your street address:");
@@ -104,9 +113,23 @@ class Driver{
         String province = PromptInput("Please enter the province:");
         String postal = PromptInput("Please enter the postal code:");
 
+        //instatiate patient with our input data
         Patient newPatient = new Patient(fname, lname, address, city, province, postal);
 
+        //output patient object using toString method
         JOptionPane.showMessageDialog (null,"New patient Created:    " + newPatient);
+
+        //use getter methods to view name and postal code
+        JOptionPane.showMessageDialog(null, "Patient first name is: " + newPatient.getFirstName());
+        JOptionPane.showMessageDialog(null, "Patient postal code is: " + newPatient.getPostalCode());
+
+        //use setter method to update postal code
+        newPatient.setPostalCode(PromptInput("Please update your address: "));
+        JOptionPane.showMessageDialog(null, "Patient postal code is: " + newPatient.getPostalCode());
+
+        //display default constructor
+        Patient newPatient2 = new Patient();
+        JOptionPane.showMessageDialog (null,"New patient Created:    " + newPatient2);
 
 
     }
