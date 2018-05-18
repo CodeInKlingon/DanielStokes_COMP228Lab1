@@ -43,6 +43,10 @@ public class Patient {
         return "Name: '" + this.firstName + " " + this.lastName + "| Patient Number: " + patientId + "| Address: " + address + ", " + city + ", " + province + ", " + postalCode;
     }
 
+    public String GetPatientInfo(){
+        return "Name: '" + this.firstName + " " + this.lastName + "| Patient Number: " + patientId + "| Address: " + address + ", " + city + ", " + province + ", " + postalCode;
+    }
+
     //getter and setters
 
     public String getFirstName() {
