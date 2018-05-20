@@ -51,26 +51,36 @@ public class BankAccount {
     }
 }
 
+
+//driver class for bank account exercise
 class DriverEx2{
     public static void main(String[] args) {
 
+        //runmmethod to prompt for input
         String name = PromptInput("Please enter the name of the account holder: ");
         String bal = PromptInput("Please enter the amount of money you wish to deposit into your new account");
 
         double newBalance = Double.parseDouble(bal);
+
+        //instantiate new Bank Account object
         BankAccount ba = new BankAccount(name, newBalance);
 
         JOptionPane.showMessageDialog(null, "Your account is created and has a transaction limit of 10.");
 
+
+        //loop to prompt for deposit or withdraw actions from user
         for(int i = 0; i < 10; i++){
             Object[] options = {"Deposit", "Withdraw"};
             JPanel panel = new JPanel();
             JLabel lbl = new JLabel("Choose your desired action");
             panel.add(lbl);
 
+
+            //alternate logic for deposit or withdraw selection from user
             int result = JOptionPane.showOptionDialog(null,panel,"Choose the transaction type:", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,null,options,null);
             if (result != JOptionPane.YES_OPTION){
 
+                //create option panel
                 double withdrawAmount;
 
                 Object[] options2 = { "Withdraw"};
@@ -83,11 +93,13 @@ class DriverEx2{
 
                 int result2 = JOptionPane.showOptionDialog(null,panel2,"Amount:", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,null,options2,null);
 
+                //get input
                 if(result2 == JOptionPane.YES_OPTION){
                     withdrawAmount = Double.parseDouble(textField.getText());
                     ba.Withdraw(withdrawAmount);
                 }
             }else{
+                //create option panel
                 double depositAmount;
                 Object[] options2 = { "Deposit"};
                 JPanel panel2 = new JPanel();
@@ -98,13 +110,14 @@ class DriverEx2{
                 panel2.add(textField);
 
                 int result2 = JOptionPane.showOptionDialog(null,panel2,"Amount:", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,null,options2,null);
-
+                //get input
                 if(result2 == JOptionPane.YES_OPTION){
                     depositAmount = Double.parseDouble(textField.getText());
                     ba.Deposit(depositAmount);
                 }
             }
 
+            //show message with current balance
             JOptionPane.showMessageDialog(null,"Your account balance is now: $" + String.format( "%.2f" ,ba.getBalance()));
 
 
